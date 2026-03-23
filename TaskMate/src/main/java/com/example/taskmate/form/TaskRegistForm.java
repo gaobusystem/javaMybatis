@@ -15,6 +15,8 @@ public class TaskRegistForm {
 	
 	@Size(min=2, max=2, message="指定に誤りがあります。")
 	private String statusCode;
+	
+	private String statusName;
 
 	@Size(max=64, message="64文字以内で指定してください。")
 	private String remarks;

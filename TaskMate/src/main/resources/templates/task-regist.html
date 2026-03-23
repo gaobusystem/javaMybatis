@@ -29,7 +29,13 @@
 	<tr>
 		<td class="guide">【ステータス】</td>
 		<td>
-		   	<input type="text" th:field="*{statusCode}"><br>
+		   	<select th:field="*{statusCode}">
+				<option th:each="status : ${statusList}" 
+					th:value="${status.statusCode}" 
+					th:text="${status.statusCode + ':' + status.statusName}"
+					th:selected="${status.statusCode == statusCode}" >
+				</option>
+			</select>
 		   	<div th:if="${#fields.hasErrors('statusCode')}" th:errors="*{statusCode}" class="error-msg"></div>
 		</td>
 	</tr>

@@ -20,7 +20,7 @@
 	</tr>
 	<tr>
 		<td class="guide">【ステータス】</td>
-		<td th:text="*{statusCode}"></td>
+		<td th:text="*{statusCode + ':' + statusName}"></td>
 	</tr>
 	<tr>
 		<td class="guide">【備考】</td>
