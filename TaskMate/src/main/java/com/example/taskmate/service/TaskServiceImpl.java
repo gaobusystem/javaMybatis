@@ -35,4 +35,13 @@ public class TaskServiceImpl implements TaskService {
 
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public List<TaskSummary> findListByConditions(Task task) {
+
+		List<TaskSummary> list = taskRepository.selectListByConditions(task);
+
+		return list;
+	}
+
 }

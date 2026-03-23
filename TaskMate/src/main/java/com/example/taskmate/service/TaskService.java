@@ -13,4 +13,7 @@ public interface TaskService {
 	// 登録
 	void regist(Task task);
 
+	// 一覧条件検索
+	List<TaskSummary> findListByConditions(Task task);
+
 }

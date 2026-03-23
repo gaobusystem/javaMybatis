@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.taskmate.entity.Status;
+import com.example.taskmate.entity.Task;
 import com.example.taskmate.entity.TaskSummary;
 import com.example.taskmate.form.TaskSearchListForm;
 import com.example.taskmate.service.StatusService;
@@ -46,15 +47,23 @@ public class TaskSearchController {
 			BindingResult result,
 			Model model) {
 		
-		// form内容の表示
-		System.out.println("---searchList---");
-		System.out.println(form);
-		
-		// 全件検索ー＞条件検索に変更する
-		
-		// 一覧の全件検索
-		List<TaskSummary> list = taskService.findListAll();
-		
+		//-- form -> entity へ (検索条件は Task) --
+		Task task = new Task();
+		// taskName設定
+		if (!form.getTaskName().equals("")) {
+			task.setTaskName("%" + form.getTaskName() + "%");
+		}
+		// limitDate設定
+		task.setLimitDate(form.getLimitDate());
+		// statusCode設定
+		if (!form.getStatusCode().equals("")) {
+			task.setStatusCode(form.getStatusCode());
+		}
+
+		// 一覧の条件検索
+		List<TaskSummary> list
+			= taskService.findListByConditions(task);
+
 		// ステータスリストを Model に設定（次回検索用）
 		List<Status> statusList = statusService.findAll();
 		model.addAttribute("statusList", statusList);
