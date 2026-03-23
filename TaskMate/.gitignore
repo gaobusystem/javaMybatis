@@ -31,5 +31,3 @@ build/
 
 ### VS Code ###
 .vscode/
-
-TaskMate/src/main/resources/application.properties
