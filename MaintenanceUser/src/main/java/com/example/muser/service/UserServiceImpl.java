@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.muser.entity.User;
+import com.example.muser.entity.UserUp;
 import com.example.muser.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,14 @@ public class UserServiceImpl implements UserService {
 		List<User> list = userRepository.selectListAll();
 
 		return list;
+	}
+
+	@Override
+	@Transactional
+	public void regist(UserUp userUp) {
+
+		userRepository.insert(userUp);
+
 	}
 
 }

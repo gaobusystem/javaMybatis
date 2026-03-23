@@ -3,13 +3,18 @@ package com.example.muser.repository;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.example.muser.entity.User;
+import com.example.muser.entity.UserUp;
 
 @Mapper
 public interface UserRepository {
 
 	// 一覧全件検索
 	List<User> selectListAll();
+
+	// 登録
+	void insert(@Param("user") UserUp userUp);
 
 }

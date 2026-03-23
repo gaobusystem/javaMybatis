@@ -52,3 +52,37 @@ td {
 .user-list {
     background-color: wheat;
 }
+
+/* 詳細テーブル用 */
+.detail-table {
+    background-color: lavender;
+	width: 60%; 					/* テーブル横幅 */
+}
+
+.detail-table .guide {
+	width: 30%; 					/* テーブル横幅 */
+    background-color: lightgray;
+	text-align: center;
+}
+
+.detail-table td {
+    text-align:left;
+}
+
+.error-msg {
+    color: red;
+}
+
+/* 確認画面用 */
+.confirm-table {
+    background-color: lightgray;
+	width: 50%; 					/* テーブル横幅 */
+}
+
+.confirm-table .guide {
+	width: 30%; 					/* テーブル横幅 */
+}
+
+.confirm-table td {
+    text-align:left;
+}

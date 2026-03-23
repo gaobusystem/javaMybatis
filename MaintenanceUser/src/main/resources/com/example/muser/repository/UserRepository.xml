@@ -25,4 +25,11 @@
 	  ORDER BY user_id
 	</select>
 
+	<!-- **************** 登録 **************** -->
+	<insert id="insert">
+		INSERT INTO m_user ( user_name, area_code, email )
+		VALUES ( #{user.userName},
+				 #{user.areaCode}, #{user.email} )
+	</insert>
+
 </mapper>

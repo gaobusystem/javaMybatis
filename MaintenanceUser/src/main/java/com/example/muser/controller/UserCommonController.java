@@ -12,4 +12,10 @@ public class UserCommonController {
 		return "user-top";
 	}
 
+	/*--- 完了後のリダイレクト先 ---*/
+	@GetMapping("/user-complete")
+	private String userComplete() {
+		return "user-complete";
+	}
+
 }
