@@ -86,3 +86,8 @@ td {
 .confirm-table td {
     text-align:left;
 }
+
+.condition-table {
+    background-color: mistyrose;
+}
+

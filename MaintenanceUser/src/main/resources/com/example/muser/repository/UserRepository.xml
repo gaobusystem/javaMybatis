@@ -25,6 +25,24 @@
 	  ORDER BY user_id
 	</select>
 
+	<!-- **************** 一覧条件検索 **************** -->
+	<select id="selectListByConditions"
+			resultMap="userList">
+		SELECT user_id, user_name, mu.area_code, 
+			   ma.area_name, mu.email
+		  FROM m_user mu
+			   INNER JOIN m_area ma
+					 ON mu.area_code = ma.area_code
+		 WHERE true
+		 <if test="cond.userName != null">
+			AND user_name LIKE #{cond.userName}
+		 </if>
+		 <if test="cond.areaCode != null">
+			AND mu.area_code = #{cond.areaCode}
+		 </if>
+	  ORDER BY user_id
+	</select>
+
 	<!-- **************** 登録 **************** -->
 	<insert id="insert">
 		INSERT INTO m_user ( user_name, area_code, email )

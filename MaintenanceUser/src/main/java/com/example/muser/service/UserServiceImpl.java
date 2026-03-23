@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.muser.entity.User;
+import com.example.muser.entity.UserCond;
 import com.example.muser.entity.UserUp;
 import com.example.muser.repository.UserRepository;
 
@@ -32,6 +33,15 @@ public class UserServiceImpl implements UserService {
 
 		userRepository.insert(userUp);
 
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<User> findListByConditions(UserCond cond) {
+
+		List<User> list = userRepository.selectListByConditions(cond);
+
+		return list;
 	}
 
 }

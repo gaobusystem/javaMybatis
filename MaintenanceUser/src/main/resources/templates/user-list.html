@@ -9,7 +9,26 @@
 
 <h2>ユーザ検索</h2>
 
-<form th:action="@{/user-search}" method="POST">
+<form th:action="@{/user-search}" method="POST" th:object="${userSearchForm}">
+	<table class="condition-table">
+		<tr>
+			<th>【ユーザ名】（部分一致）</th>
+			<th>【地域】</th>
+		</tr>
+		<tr>
+			<td><input type="text" th:field="*{userName}"></td>
+			<td>
+			   	<select th:field="*{areaCode}">
+					<option value="">(全て)</option>
+					<option th:each="area : ${areaList}" 
+						th:value="${area.areaCode}" 
+						th:text="${area.areaCode + ':' + area.areaName}"
+						th:selected="${area.areaCode == areaCode}" >
+					</option>
+				</select>
+			</td>
+		</tr>
+	</table>
    	<input type="submit" value="検索" class="btn">
 </form>
 

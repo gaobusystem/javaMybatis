@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.example.muser.entity.User;
+import com.example.muser.entity.UserCond;
 import com.example.muser.entity.UserUp;
 
 @Mapper
@@ -16,5 +17,8 @@ public interface UserRepository {
 
 	// 登録
 	void insert(@Param("user") UserUp userUp);
+
+	// 一覧条件検索
+	List<User> selectListByConditions(@Param("cond") UserCond cond);
 
 }
