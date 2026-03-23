@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.muser.repository.UserRepository">
+
+	<!-- resultMap（１対１の関係を含む） -->
+	<resultMap  id="userList" 
+			    type="com.example.muser.entity.User">
+		<id     property="userId"    column="user_id" />
+		<result property="userName"  column="user_name" />
+		<result property="email"     column="email" />
+		<association property="area" javaType="com.example.muser.entity.Area">
+			<id      property="areaCode" column="area_code" />
+			<result  property="areaName" column="area_name" />
+		</association>
+	</resultMap>
+
+	<!-- **************** 一覧全件検索 **************** -->
+	<select id="selectListAll"
+			resultMap="userList">
+		SELECT user_id, user_name, mu.area_code, 
+			   ma.area_name, email
+		  FROM m_user mu
+			   INNER JOIN m_area ma
+					 ON mu.area_code = ma.area_code
+	  ORDER BY user_id
+	</select>
+
+</mapper>
