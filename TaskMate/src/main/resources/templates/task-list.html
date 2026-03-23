@@ -46,9 +46,16 @@
 
 	<table class="task-list">
 		<tr>
+			<th>詳細</th>
 			<th>タスクID</th><th>タスク名</th><th>期限</th><th>ステータス</th><th>メモ件数</th>
 		</tr>
 		<tr th:each="task : ${taskSummaryList}">
+			<td>
+				<form th:action="@{/task-search-detail}" method="POST">
+					<input type="hidden" name="taskId" th:value="${task.taskId}">
+					<input type="submit" value="詳細" class="tbtn">
+				</form>
+			</td>
 			<td th:text="${task.taskId}"></td>
 			<td th:text="${task.taskName}"></td>
 			<td th:text="${task.limitDate}"></td>

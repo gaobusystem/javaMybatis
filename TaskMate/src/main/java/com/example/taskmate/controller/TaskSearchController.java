@@ -1,5 +1,7 @@
 package com.example.taskmate.controller;
 
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -10,9 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.taskmate.entity.Memo;
 import com.example.taskmate.entity.Status;
 import com.example.taskmate.entity.Task;
+import com.example.taskmate.entity.TaskDetail;
 import com.example.taskmate.entity.TaskSummary;
+import com.example.taskmate.form.TaskSearchDetailForm;
 import com.example.taskmate.form.TaskSearchListForm;
 import com.example.taskmate.service.StatusService;
 import com.example.taskmate.service.TaskService;
@@ -72,6 +77,38 @@ public class TaskSearchController {
 		model.addAttribute("taskSummaryList", list);
 		
 		return "task-list";
+	}
+
+	/*--- 詳細検索リクエスト -------------------------------*/
+	@PostMapping("/task-search-detail")
+	private String searchDetail(
+			TaskSearchDetailForm form,
+			Model model) {
+
+		//--- 暫定で値を設定（taskDetal）
+		TaskDetail taskDetail = new TaskDetail();
+		taskDetail.setTaskId(form.getTaskId());
+		taskDetail.setTaskName("タスクテスト");
+		taskDetail.setLimitDate(Date.valueOf("2024-12-30"));
+		taskDetail.setRemarks("備考テスト");
+		//-- (status)
+		Status status = new Status();
+		status.setStatusCode("00");
+		status.setStatusName("未着手");
+		taskDetail.setStatus(status);
+		//-- (memo)
+		List<Memo> memoList= new ArrayList<Memo>();
+		Memo memo = new Memo();
+		memo.setMemoId(1);
+		memo.setTaskId(1);
+		memo.setMemo("メモテスト");
+		memoList.add(memo);
+		taskDetail.setMemoList(memoList);
+		
+		// 結果をModelに格納して 詳細画面へ
+		model.addAttribute("taskDetail", taskDetail);
+		
+		return "task-detail";
 	}
 
 }
