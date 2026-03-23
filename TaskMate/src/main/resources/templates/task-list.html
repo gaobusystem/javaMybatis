@@ -14,7 +14,29 @@
 <!-- ------------検索---------------- -->
 <h2>タスク検索</h2>
 
-<form th:action="@{/task-search-list}" method="POST">
+<form th:action="@{/task-search-list}" method="POST"
+		th:object="${taskSearchListForm}">
+	<table class="condition-table">
+		<tr>
+			<th>【タスク名】（部分一致）</th>
+			<th>【期限】</th>
+			<th>【ステータス】</th>
+		</tr>
+		<tr>
+			<td><input type="text" th:field="*{taskName}"></td>
+			<td><input type="date" th:field="*{limitDate}"> 以前</td>
+			<td>
+			   	<select th:field="*{statusCode}">
+					<option value="">(全て)</option>
+					<option th:each="status : ${statusList}" 
+						th:value="${status.statusCode}" 
+						th:text="${status.statusCode + ':' + status.statusName}"
+						th:selected="${status.statusCode == statusCode}" >
+					</option>
+				</select>
+			</td>
+		</tr>
+	</table>
    	<input type="submit" value="検索" class="btn">
 </form>
 
