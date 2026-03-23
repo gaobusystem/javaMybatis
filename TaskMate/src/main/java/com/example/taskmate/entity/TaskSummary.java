@@ -10,6 +10,7 @@ public class TaskSummary {
 	private Integer taskId;
 	private String taskName;
 	private Date limitDate;
-	private String statusCode;
-
+	private Status status;
+	private Integer memoCnt;
+	
 }
