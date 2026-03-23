@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.taskmate.entity.Task;
 import com.example.taskmate.entity.TaskSummary;
 import com.example.taskmate.repository.TaskRepository;
 
@@ -23,6 +24,14 @@ public class TaskServiceImpl implements TaskService {
 		List<TaskSummary> list = taskRepository.selectListAll();
 		
 		return list;
+
+	}
+
+	@Override
+	@Transactional
+	public void regist(Task task) {
+
+		taskRepository.insert(task);
 
 	}
 

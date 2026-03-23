@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.taskmate.entity.Status;
+import com.example.taskmate.entity.Task;
 import com.example.taskmate.form.TaskRegistForm;
 import com.example.taskmate.service.StatusService;
+import com.example.taskmate.service.TaskService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 public class TaskRegistController {
 
 	private final StatusService statusService;
+	private final TaskService taskService;
 	
 	/*--- タスク登録画面表示リクエスト ---*/
 	@PostMapping("/task-show-regist")
@@ -78,12 +81,16 @@ public class TaskRegistController {
 			return "task-regist";
 		}
 
-		// とりあえず書き出し
-		System.out.println("---登録form");
-		System.out.println(form);
+		// form -> entity へ
+		Task task = new Task();
+		task.setTaskName(form.getTaskName());
+		task.setLimitDate(form.getLimitDate());
+		task.setStatusCode(form.getStatusCode());
+		task.setRemarks(form.getRemarks());
 		
-		// ここで実際の登録をする
-		
+		// 登録処理
+		taskService.regist(task);
+
 		// フラッシュスコープに完了メッセージを表示して リダイレクト
 		redirectAttributes.addFlashAttribute("msg", "(タスク登録)");
 		
