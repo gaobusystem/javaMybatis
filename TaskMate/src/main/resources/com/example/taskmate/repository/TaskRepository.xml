@@ -66,4 +66,37 @@
 	  ORDER BY tt.task_id
 	</select>
 
+	<!-- **************** 詳細検索（メモ一覧含む） **************** -->
+	<!-- １対１の関係 ＆ １対ｎの関係 -->
+	<resultMap type="com.example.taskmate.entity.TaskDetail" 
+			   id="taskDetail">
+		<id property="taskId" column="task_id" />
+		<result property="taskName" column="task_name" />
+		<result property="limitDate" column="limit_date" />
+		<result property="remarks" column="remarks" />
+		<association property = "status" javaType="com.example.taskmate.entity.Status">
+			<id property="statusCode" column="status_code" />
+			<result property="statusName" column="status_name" />
+		</association>
+		<collection property = "memoList" ofType="com.example.taskmate.entity.Memo">
+			<id property="memoId" column="memo_id" />
+			<result property="taskId" column="m_task_id" />
+			<result property="memo" column="memo" />
+		</collection>
+	</resultMap>
+	<!-- 詳細検索 -->
+	<select id="selectDetailByTaskId" 
+			resultMap="taskDetail">
+		SELECT tt.task_id, task_name, limit_date, remarks, 
+			   ms.status_code, ms.status_name, 
+			   tm.memo_id, tm.task_id m_task_id, tm.memo 
+		  FROM t_task tt
+			   INNER JOIN m_status ms
+				  ON tt.status_code = ms.status_code
+			   LEFT OUTER JOIN t_memo tm
+							ON tt.task_id = tm.task_id
+		 WHERE tt.task_id = #{taskId}
+	  ORDER BY tm.memo_id
+	</select>
+
 </mapper>
