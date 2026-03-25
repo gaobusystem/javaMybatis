@@ -32,6 +32,14 @@
 		<td th:text="*{remarks}"></td>
 	</tr>
 </table>
+<form th:action="@{/task-show-edit}" method="POST" th:object="${taskDetail}">
+	<input type="hidden" th:field="*{taskId}">
+	<input type="hidden" th:field="*{taskName}">
+	<input type="hidden" th:field="*{limitDate}">
+	<input type="hidden" name="statusCode" th:value="*{status.statusCode}">
+	<input type="hidden" th:field="*{remarks}">
+	<input type="submit" value="編集" class="btn">
+</form>
 <br>
 
 <!-- ------------メモ一覧---------------- -->
