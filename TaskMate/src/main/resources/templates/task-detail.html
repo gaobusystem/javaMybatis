@@ -59,6 +59,11 @@
 
 </div>
 
+<!-- ------------メモ登録へ---------------- -->
+<form th:action="@{/memo-show-regist}" method="POST" th:object="${taskDetail}">
+	<input type="hidden" th:field="*{taskId}">
+	<input type="submit" value="メモ登録" class="btn">
+</form>
 <br>
 <a th:href="@{/top}">トップページに戻る</a>
 

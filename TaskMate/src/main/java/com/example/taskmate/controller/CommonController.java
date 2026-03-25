@@ -12,4 +12,10 @@ public class CommonController {
 		return "task-complete";
 	}
 
+	/*--- 完了後のリダイレクト先（メモ更新系） ---*/
+	@GetMapping("/memo-complete")
+	private String completeMemo() {
+		return "memo-complete";
+	}
+
 }
