@@ -89,11 +89,8 @@ public class TaskEditController {
 		task.setStatusCode(form.getStatusCode());
 		task.setRemarks(form.getRemarks());
 		
-		// とりあえず task内容を表示
-		System.out.println("---更新");
-		System.out.println(task);
-
-		// ここで更新
+		// 更新処理
+		taskService.edit(task);
 		
 		// フラッシュスコープに完了メッセージを表示して リダイレクト
 		redirectAttributes.addFlashAttribute("msg", "(タスク更新)");

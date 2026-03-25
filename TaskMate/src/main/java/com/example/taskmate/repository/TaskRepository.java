@@ -24,4 +24,7 @@ public interface TaskRepository {
 	// 詳細検索
 	TaskDetail selectDetailByTaskId(@Param("taskId") Integer taskId);
 
+	// 更新
+	void update(@Param("task") Task task);
+
 }

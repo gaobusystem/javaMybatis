@@ -99,4 +99,17 @@
 	  ORDER BY tm.memo_id
 	</select>
 
+	<!-- **************** 更新 **************** -->
+	<update id="update">
+		UPDATE
+		  t_task
+		SET
+		  task_name   = #{task.taskName},
+		  limit_date  = #{task.limitDate},
+		  status_code = #{task.statusCode},
+		  remarks     = #{task.remarks}
+		WHERE
+		  task_id = #{task.taskId}
+	</update>
+
 </mapper>

@@ -20,4 +20,7 @@ public interface TaskService {
 	// 詳細検索
 	TaskDetail findDetailByTaskId(Integer taskId);
 
+	// 更新
+	void edit(Task task);
+
 }

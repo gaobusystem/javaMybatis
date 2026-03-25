@@ -55,4 +55,12 @@ public class TaskServiceImpl implements TaskService {
 
 	}
 
+	@Override
+	@Transactional
+	public void edit(Task task) {
+
+		taskRepository.update(task);
+		
+	}
+
 }

@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>TaskMate16</artifactId>
+	<artifactId>TaskMate17</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>TaskMate16</name>
+	<name>TaskMate17</name>
 	<description>Task Management System</description>
 	<url/>
 	<licenses>
