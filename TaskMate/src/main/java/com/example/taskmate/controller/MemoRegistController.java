@@ -7,13 +7,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.taskmate.entity.Memo;
 import com.example.taskmate.form.MemoRegistForm;
+import com.example.taskmate.service.MemoService;
 
 import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
 public class MemoRegistController {
+
+	private final MemoService memoService;
 
 	/*--- メモ登録画面表示リクエスト ---*/
 	@PostMapping("/memo-show-regist")
@@ -49,11 +53,13 @@ public class MemoRegistController {
 			return "memo-regist";
 		}
 
-		//---とりあえず内容表示
-		System.out.println("---メモ登録");
-		System.out.println(form);
+		// form -> entity へ
+		Memo memo = new Memo();
+		memo.setTaskId(form.getTaskId());
+		memo.setMemo(form.getMemo());
 		
-		//ここでメモ登録処理を呼び出す
+		// 登録処理
+		memoService.regist(memo);
 
 		// フラッシュスコープに完了メッセージを表示して リダイレクト
 		redirectAttributes.addFlashAttribute("msg", "(メモ登録)");
