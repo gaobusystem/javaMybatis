@@ -47,10 +47,19 @@
 
 	<table class="memo-list">
 		<tr>
+			<th>削除</th>
 			<th>メモID</th><th>メモ</th>
 		</tr>
 
 		<tr th:each="memo : ${taskDetail.memoList}">
+			<td>
+				<form th:action="@{/memo-remove}" method="POST">
+					<input type="hidden" name="taskId" th:value="${memo.taskId}">
+					<input type="hidden" name="memoId" th:value="${memo.memoId}">
+					<input type="hidden" name="memo"   th:value="${memo.memo}">
+					<input type="submit" value="削除" class="tbtn">
+				</form>
+			</td>
 			<td th:text="${memo.memoId}"></td>
 			<td th:text="${memo.memo}"></td>
 		</tr>
