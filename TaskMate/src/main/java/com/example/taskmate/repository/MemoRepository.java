@@ -11,4 +11,7 @@ public interface MemoRepository {
 	// 登録
 	void insert(@Param("memo") Memo memo);
 
+	// １件削除
+	void delete(@Param("memoId") Integer memoId);
+
 }

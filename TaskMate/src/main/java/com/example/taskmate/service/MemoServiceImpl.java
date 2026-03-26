@@ -22,4 +22,12 @@ public class MemoServiceImpl implements MemoService {
 		
 	}
 
+	@Override
+	@Transactional
+	public void remove(Integer memoId) {
+
+		memoRepository.delete(memoId);
+		
+	}
+
 }

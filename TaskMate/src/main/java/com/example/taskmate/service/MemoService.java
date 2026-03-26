@@ -7,4 +7,7 @@ public interface MemoService {
 	// 登録
 	void regist(Memo memo);
 
+	// １件削除
+	void remove(Integer memoId);
+
 }

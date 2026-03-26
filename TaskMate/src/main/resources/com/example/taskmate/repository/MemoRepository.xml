@@ -8,4 +8,13 @@
 		VALUES ( #{memo.taskId}, #{memo.memo} )
 	</insert>
 
+	<!-- **************** １件削除 **************** -->
+	<delete id="delete">
+		DELETE
+		FROM
+		  t_memo
+		WHERE
+		  memo_id = #{memoId}
+	</delete>
+
 </mapper>

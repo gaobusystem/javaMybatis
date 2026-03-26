@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.taskmate.form.MemoRemoveForm;
+import com.example.taskmate.service.MemoService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,12 +14,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MemoRemoveController {
 
+	private final MemoService memoService;
+
 	/*--- メモ削除リクエスト（メモ一覧画面より） ---*/
 	@PostMapping("/memo-remove")
 	public String remove(
 			@ModelAttribute MemoRemoveForm form) {
 
-		// 正常な場合に メモ登録確認画面に遷移する
+		// メモ削除確認画面に遷移する
 		return "memo-confirm-remove";
 	}
 
@@ -28,12 +31,9 @@ public class MemoRemoveController {
 			@ModelAttribute MemoRemoveForm form,
 			RedirectAttributes redirectAttributes) {
 
-		//----とりあえず表示
-		System.out.println("---メモ削除");
-		System.out.println(form);
+		// 削除処理
+		memoService.remove(form.getMemoId());
 
-		//--- ここで削除実行処理
-		
 		// フラッシュスコープに完了メッセージを表示して リダイレクト
 		redirectAttributes.addFlashAttribute("msg", "(メモ削除)");
 		redirectAttributes.addFlashAttribute("taskId", form.getTaskId());
