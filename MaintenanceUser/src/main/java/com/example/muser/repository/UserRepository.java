@@ -21,4 +21,9 @@ public interface UserRepository {
 	// 一覧条件検索
 	List<User> selectListByConditions(@Param("cond") UserCond cond);
 
+	// 更新
+	void update(@Param("user") UserUp userUp);
+
+	// 削除
+	void delete(@Param("userId") Integer userId);
 }

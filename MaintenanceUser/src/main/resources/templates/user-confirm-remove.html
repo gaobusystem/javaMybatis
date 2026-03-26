@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ユーザ削除確認</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+		
+<h2>ユーザ削除確認</h2>
+
+<table class="detail-table" th:object="${userRemoveForm}">
+	<tr>
+		<td class="guide">【ユーザID】</td>
+		<td th:text="*{userId}"></td>
+	</tr>
+	<tr>
+		<td class="guide">【ユーザ名】</td>
+		<td th:text="*{userName}"></td>
+	</tr>
+	<tr>
+		<td class="guide">【地域】</td>
+		<td th:text="*{areaCode + ':' + areaName}"></td>
+	</tr>
+	<tr>
+		<td class="guide">【メール】</td>
+		<td th:text="*{email}"></td>
+	</tr>
+</table>
+<br>
+
+<form th:action="@{/user-confirm-remove}" method="POST" 
+		th:object="${userRemoveForm}">
+    <input type="hidden" th:field="*{userId}">
+    <input type="submit" value="削除実行" class="btn">
+</form>
+
+<br>
+<a th:href="@{/user-top}">トップページに戻る</a>
+
+</body>
+</html>

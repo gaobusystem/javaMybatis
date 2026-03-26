@@ -44,4 +44,20 @@ public class UserServiceImpl implements UserService {
 		return list;
 	}
 
+	@Override
+	@Transactional
+	public void edit(UserUp userUp) {
+
+		userRepository.update(userUp);
+
+	}
+
+	@Override
+	@Transactional
+	public void remove(Integer userId) {
+
+		userRepository.delete(userId);
+		
+	}
+
 }

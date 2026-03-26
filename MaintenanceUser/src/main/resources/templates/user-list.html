@@ -37,10 +37,29 @@
 
 	<table class="user-list">
 		<tr>
-			<th>ユーザID</th><th>ユーザ名</th><th>地域</th><th>メール</th>
+			<th colspan="2">ユーザ</th><th>ユーザID</th><th>ユーザ名</th><th>地域</th><th>メール</th>
 		</tr>
 
 		<tr th:each="user : ${userList}">
+			<td>
+				<form th:action="@{/user-show-edit}" method="POST">
+					<input type="hidden" name="userId" th:value="${user.userId}">
+					<input type="hidden" name="userName" th:value="${user.userName}">
+					<input type="hidden" name="areaCode" th:value="${user.area.areaCode}">
+					<input type="hidden" name="email" th:value="${user.email}">
+					<input type="submit" value="編集" class="tbtn">
+				</form>
+			</td>
+			<td>
+				<form th:action="@{/user-remove}" method="POST">
+					<input type="hidden" name="userId" th:value="${user.userId}">
+					<input type="hidden" name="userName" th:value="${user.userName}">
+					<input type="hidden" name="areaCode" th:value="${user.area.areaCode}">
+					<input type="hidden" name="areaName" th:value="${user.area.areaName}">
+					<input type="hidden" name="email" th:value="${user.email}">
+					<input type="submit" value="削除" class="tbtn">
+				</form>
+			</td>
 			<td th:text="${user.userId}"></td>
 			<td th:text="${user.userName}"></td>
 			<td th:text="${user.area.areaCode + ':' + user.area.areaName}"></td>

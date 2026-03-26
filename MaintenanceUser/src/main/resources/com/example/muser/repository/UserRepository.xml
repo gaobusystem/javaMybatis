@@ -50,4 +50,25 @@
 				 #{user.areaCode}, #{user.email} )
 	</insert>
 
+	<!-- **************** 更新 **************** -->
+	<update id="update">
+		UPDATE
+		  m_user
+		SET
+		  user_name = #{user.userName},
+		  area_code = #{user.areaCode},
+		  email     = #{user.email}
+		WHERE
+		  user_id   = #{user.userId}
+	</update>
+
+	<!-- **************** 削除 **************** -->
+	<delete id="delete">
+		DELETE
+		FROM
+		  m_user
+		WHERE
+		  user_id = #{userId}
+	</delete>
+
 </mapper>

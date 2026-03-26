@@ -17,4 +17,10 @@ public interface UserService {
 	// 一覧条件検索
 	List<User> findListByConditions(UserCond cond);
 
+	// 更新
+	void edit(UserUp userUp);
+
+	// 削除
+	void remove(Integer userId);
+
 }
