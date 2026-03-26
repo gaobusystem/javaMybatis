@@ -40,6 +40,13 @@
 	<input type="hidden" th:field="*{remarks}">
 	<input type="submit" value="編集" class="btn">
 </form>
+<form th:action="@{/task-remove}" method="POST" th:object="${taskDetail}">
+	<input type="hidden" th:field="*{taskId}">
+	<input type="submit" value="削除" class="btn">
+</form>
+<div th:if="${taskDetail.memoList.size()} != 0">
+	(メモは全て削除)
+</div>
 <br>
 
 <!-- ------------メモ一覧---------------- -->
