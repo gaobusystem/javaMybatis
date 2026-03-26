@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.taskmate.entity.Task;
 import com.example.taskmate.entity.TaskDetail;
 import com.example.taskmate.entity.TaskSummary;
+import com.example.taskmate.repository.MemoRepository;
 import com.example.taskmate.repository.TaskRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 public class TaskServiceImpl implements TaskService {
 
 	private final TaskRepository taskRepository;
+	private final MemoRepository memoRepository;
 	
 	@Override
 	@Transactional(readOnly = true)
@@ -61,6 +63,18 @@ public class TaskServiceImpl implements TaskService {
 
 		taskRepository.update(task);
 		
+	}
+
+	@Override
+	@Transactional
+	public void remove(Integer taskId) {
+
+		// タスクIDを指定してメモ削除
+		memoRepository.deleteByTaskId(taskId);
+		
+		// タスク削除
+		taskRepository.delete(taskId);
+
 	}
 
 }

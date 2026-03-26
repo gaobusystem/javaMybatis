@@ -17,4 +17,13 @@
 		  memo_id = #{memoId}
 	</delete>
 
+	<!-- **************** タスクIDを指定して削除 **************** -->
+	<delete id="deleteByTaskId">
+		DELETE
+		FROM
+		  t_memo
+		WHERE
+		  task_id = #{taskId}
+	</delete>
+
 </mapper>

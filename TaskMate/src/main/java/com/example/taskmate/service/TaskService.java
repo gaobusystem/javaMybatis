@@ -23,4 +23,7 @@ public interface TaskService {
 	// 更新
 	void edit(Task task);
 
+	// 削除
+	void remove(Integer taskId);
+
 }

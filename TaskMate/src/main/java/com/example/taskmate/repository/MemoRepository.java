@@ -14,4 +14,7 @@ public interface MemoRepository {
 	// １件削除
 	void delete(@Param("memoId") Integer memoId);
 
+	// タスクIDを指定して削除
+	void deleteByTaskId(@Param("taskId") Integer taskId);
+
 }
